@@ -19,7 +19,7 @@ const MainNav: React.FC<MainNavProps> = ({ items }) => {
     <div className='hidden lg:flex'>
       {/* MENU */}
       <div>
-        <Link href='/'>Home</Link>
+        
       </div>
     </div>
   )
