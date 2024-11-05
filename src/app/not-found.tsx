@@ -6,8 +6,7 @@ import Link from 'next/link'
 const NotFound: React.FC = () => {
   return (
     <div className='flex h-screen flex-col justify-between'>
-      <div className='h-10'>
-      </div>
+      <div className='h-10'></div>
       <div className='flex flex-col items-center justify-center bg-background px-4 py-12 sm:px-6 lg:px-8'>
         <div className='w-full max-w-md space-y-8'>
           <div className='flex flex-col items-center justify-center space-y-4'>
