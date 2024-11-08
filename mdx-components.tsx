@@ -1,4 +1,3 @@
-
 import type { MDXComponents } from 'mdx/types'
 import Image, { ImageProps } from 'next/image'
 
@@ -11,7 +10,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
           fontFamily: 'sans-serif',
           fontSize: '23px',
           fontWeight: 'bold',
-          
         }}
         {...props}
       >
@@ -33,7 +31,18 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </a>
     ),
-    
+
+    div: ({ children }) => (
+      <div
+        style={{
+          cursor: 'pointer',
+          marginTop: '5rem',
+        }}
+      >
+        {children}
+      </div>
+    ),
+
     img: (props) => (
       <Image
         sizes='100vw'
