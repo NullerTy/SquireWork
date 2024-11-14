@@ -1,16 +1,20 @@
 import Image from 'next/image'
 
-const MyComponent = () => {
+type MyComponentProps = {
+  image?: string;
+}
+
+const MyComponent = ({ image }: MyComponentProps) => {
   return (
     <div>
       <Image
-        src='/beautiful.jpg' // The path to the image in the public directory
-        alt='Beautiful image'
-        width={500} // Specify the width
-        height={300} // Specify the height
+        src={image || '/cute.jpg'}
+        alt="Beautiful image"
+        width={500}
+        height={300}
       />
     </div>
   )
 }
 
-export default MyComponent
+export default MyComponent;
