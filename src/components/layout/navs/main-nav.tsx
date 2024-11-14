@@ -22,7 +22,7 @@ const MainNav: React.FC<MainNavProps> = ({ items }) => {
   return (
     <>
       {/* This SHOULD BE HIDDEN BY DEFAULT*/}
-      <div className=''>
+      <div className='mr-12 hidden gap-12 lg:flex'>
         {/* MENU */}
         <div className='mr-12 flex gap-12'>{itemsList}</div>
       </div>

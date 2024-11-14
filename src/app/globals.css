@@ -73,6 +73,23 @@
 
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+
+  .container {
+    @apply max-w-full; /* Ensure containers don't overflow */
+  }
+
+  img {
+    @apply h-auto max-w-full; /* Ensure images scale properly */
+  }
+
+  .flex-container {
+    @apply flex flex-wrap items-center justify-center;
+  }
+
+  .grid-container {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
   }
 }
 

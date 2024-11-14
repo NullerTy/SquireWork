@@ -7,7 +7,7 @@ type JobCardProps = {
   location: string
   description: string
   responsibilities: string[]
-  image?: string  // Optional image prop
+  image?: string // Optional image prop
 }
 
 const JobCard = ({
@@ -20,18 +20,18 @@ const JobCard = ({
   image,
 }: JobCardProps) => {
   // Fallback image if none is provided
-  const imagePath = image && image.trim() !== '' ? image : '/cute.jpg';  // Default fallback image
+  const imagePath = image && image.trim() !== '' ? image : '/cute.jpg' // Default fallback image
 
   return (
     <div className='mb-8 rounded-lg bg-white p-6 shadow-lg'>
       {/* Conditionally render the image if a valid path exists */}
       {imagePath && (
         <Image
-          src={imagePath}  // Use the image path here
-          alt={`${title} at ${company}`}  // Descriptive alt text
-          width={150}  // Set the width for the image
+          src={imagePath} // Use the image path here
+          alt={`${title} at ${company}`} // Descriptive alt text
+          width={150} // Set the width for the image
           height={150} // Set the height for the image
-          className="rounded-lg mb-4"
+          className='mb-4 rounded-lg'
         />
       )}
       <h2 className='text-2xl font-bold text-gray-800'>{title}</h2>

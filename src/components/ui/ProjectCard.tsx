@@ -12,7 +12,7 @@ export const ProjectCard = ({
   link: string
   image?: string
 }) => {
-  const imagePath = image && image.trim() !== '' ? image : '/cute.jpg'; // Default image path
+  const imagePath = image && image.trim() !== '' ? image : '/cute.jpg' // Default image path
 
   return (
     <div className='overflow-hidden rounded-lg bg-white shadow-lg'>
@@ -22,7 +22,7 @@ export const ProjectCard = ({
           alt={`${title} at ${description}`} // Descriptive alt text
           width={150} // Set the width for the image
           height={150} // Set the height for the image
-          className="rounded-lg mb-4"
+          className='mb-4 rounded-lg'
         />
       )}
       <div className='p-6'>

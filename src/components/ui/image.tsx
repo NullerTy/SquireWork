@@ -1,7 +1,7 @@
 import Image from 'next/image'
 
 type MyComponentProps = {
-  image?: string;
+  image?: string
 }
 
 const MyComponent = ({ image }: MyComponentProps) => {
@@ -9,7 +9,7 @@ const MyComponent = ({ image }: MyComponentProps) => {
     <div>
       <Image
         src={image || '/cute.jpg'}
-        alt="Beautiful image"
+        alt='Beautiful image'
         width={500}
         height={300}
       />
@@ -17,4 +17,4 @@ const MyComponent = ({ image }: MyComponentProps) => {
   )
 }
 
-export default MyComponent;
+export default MyComponent
