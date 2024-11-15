@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    --background: hsla(0, 26%, 53%, 0.295);
-    --foreground: hsl(0 0% 3.9%);
+    --background: hsl(0, 0%, 0%);
+    --foreground: hsl(0, 0%, 0%);
 
     --card: hsl(0 0% 100%);
     --card-foreground: hsl(0 0% 3.9%);
@@ -20,7 +20,7 @@
     --secondary-foreground: hsl(0 0% 9%);
 
     --muted: hsl(0 0% 96.1%);
-    --muted-foreground: hsl(0 0% 45.1%);
+    --muted-foreground: hsl(0, 0%, 100%);
 
     --accent: hsl(0 0% 96.1%);
     --accent-foreground: hsl(0 0% 9%);
@@ -60,7 +60,7 @@
     --destructive: hsl(0 62.8% 30.6%);
     --destructive-foreground: hsl(0 0% 98%);
 
-    --border: hsl(0 0% 14.9%);
+    --border: hsla(0, 0%, 0%, 0.241);
     --input: hsl(0 0% 14.9%);
     --ring: 0 0% 83.1%;
   }
