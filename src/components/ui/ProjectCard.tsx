@@ -26,10 +26,14 @@ export const ProjectCard = ({
         />
       )}
       <div className='p-6'>
-        <h2 className='text-xl font-semibold text-gray-800'>{title}</h2>
-        <p className='mt-2 text-gray-600'>{description}</p>
+        <h2 className='text-xl font-semibold text-black text-stroke-red'>
+          {title}
+        </h2>
+        <p className='mt-2 text-black text-stroke-red'>{description}</p>
         <Link href={link} passHref>
-          <div className='mt-4 cursor-pointer text-blue-500'>View Project</div>
+          <div className='mt-4 cursor-pointer text-black text-stroke-red'>
+            View Project
+          </div>
         </Link>
       </div>
     </div>

@@ -16,7 +16,7 @@ const MobileNav: React.FC<NavProps> = ({ items }) => {
     <div className='flex items-center'>
       <Sheet>
         <SheetTrigger aria-controls={'mobile-nav'}>
-          <Menu />
+          <Menu className='fill-current text-red-600' />
         </SheetTrigger>
         <SheetContent side='left' className='w-11/12'>
           <Link href='/'>
@@ -27,7 +27,7 @@ const MobileNav: React.FC<NavProps> = ({ items }) => {
               {items?.map((item) => (
                 <li key={item.href}>
                   <Link
-                    className='text-lg font-medium text-white hover:text-primary'
+                    className='text-lg font-medium text-black text-stroke-red hover:text-primary'
                     href={item.href}
                   >
                     {item.title}

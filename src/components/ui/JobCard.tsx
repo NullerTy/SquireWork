@@ -34,16 +34,16 @@ const JobCard = ({
           className='mb-4 rounded-lg'
         />
       )}
-      <h2 className='text-2xl font-bold text-gray-800'>{title}</h2>
-      <p className='text-lg text-gray-600'>
+      <h2 className='text-2xl font-bold text-black text-stroke-red'>{title}</h2>
+      <p className='text-lg text-black text-stroke-red'>
         {company} • {location}
       </p>
-      <p className='mb-2 text-sm text-gray-500'>{duration}</p>
-      <p className='mb-4 text-gray-700'>{description}</p>
-      <h3 className='mb-2 text-lg font-semibold text-gray-800'>
+      <p className='mb-2 text-sm text-black text-stroke-red'>{duration}</p>
+      <p className='mb-4 text-black text-stroke-red'>{description}</p>
+      <h3 className='mb-2 text-lg font-semibold text-black text-stroke-red'>
         Key Responsibilities:
       </h3>
-      <ul className='list-inside list-disc space-y-1 text-gray-700'>
+      <ul className='list-inside list-disc space-y-1 text-black text-stroke-red'>
         {responsibilities.map((task, index) => (
           <li key={index}>{task}</li>
         ))}

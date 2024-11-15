@@ -49,7 +49,7 @@ const Carousel: React.FC<CarouselProps> = ({ slides, height = '400px' }) => {
       style={{ height }} // Allow dynamic height adjustment
     >
       {/* Slides */}
-      <div className='relative h-full w-full'>
+      <div className='relative h-full w-full text-black text-stroke-red'>
         <AnimatePresence mode='wait'>
           {slides.map((slide, index) =>
             index === currentIndex ? (
@@ -100,7 +100,7 @@ const Carousel: React.FC<CarouselProps> = ({ slides, height = '400px' }) => {
           <button
             key={index}
             className={`h-3 w-3 rounded-full ${
-              index === currentIndex ? 'bg-white' : 'bg-gray-400'
+              index === currentIndex ? 'bg-white' : 'bg-red-400'
             }`}
             onClick={() => handleDotClick(index)}
           />

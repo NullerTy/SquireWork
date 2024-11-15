@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss'
+import plugin from 'tailwindcss/plugin'
 
-const config = {
+const config: Config = {
   darkMode: ['class'],
   content: [
     './pages/**/*.{ts,tsx}',
@@ -75,7 +76,35 @@ const config = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
-} satisfies Config
+  plugins: [
+    require('tailwindcss-animate'),
+    plugin(function ({
+      addUtilities,
+    }: {
+      addUtilities: (utilities: Record<string, any>) => void
+    }) {
+      addUtilities({
+        '.text-stroke': {
+          '-webkit-text-stroke': '1px black', // Default stroke
+        },
+        '.text-stroke-2': {
+          '-webkit-text-stroke': '2px black', // Medium stroke
+        },
+        '.text-stroke-4': {
+          '-webkit-text-stroke': '4px black', // Thick stroke
+        },
+        '.text-stroke-red': {
+          '-webkit-text-stroke': '2px red', // red
+        },
+        '.text-stroke-blue': {
+          '-webkit-text-stroke': '2px blue', // blue
+        },
+        '.text-stroke-pink': {
+          '-webkit-text-stroke': '2px pink', // pink
+        },
+      })
+    }),
+  ],
+}
 
 export default config

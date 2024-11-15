@@ -13,21 +13,23 @@ const Page: React.FC = () => {
   return (
     <>
       {/* Main text */}
-      <div className='mb-20 mt-20 flex-wrap'>
+      <div className='mb-20 mt-20 flex-wrap text-black text-stroke-red'>
         <h1 className='text-wrap text-center text-5xl font-medium [text-shadow:_1px_2px_3px_rgba(0,0,0,0.2);]'>
-          <span className='text-7xl text-white'>Dovydo</span>{' '}
-          <span className='text-7xl text-white'>Portfolio</span>
+          <span className='text-7xl'>Dovydo</span>{' '}
+          <span className='text-7xl'>Portfolio</span>
         </h1>
       </div>
       {/* Line */}
       <div className='m-auto flex w-4/12 justify-center bg-black [height:_0.4px]'></div>
-      <div className='m-auto mt-4 flex w-9/12 justify-center text-white'>
+      <div className='m-auto mt-4 flex w-9/12 justify-center text-black text-stroke-red'>
         {/* Content about me */}
         <p>{text}</p>
       </div>
 
       <main className='flex h-screen w-full flex-col items-center justify-center border-4 border-black'>
-        <h1 className='mb-6 text-4xl text-white'>Our collaborators</h1>
+        <h1 className='mb-6 text-4xl text-black text-stroke-red'>
+          Our collaborators
+        </h1>
         <Carousel slides={slides} height='500px' />
       </main>
 
@@ -47,7 +49,7 @@ const Page: React.FC = () => {
         <div className='absolute left-0 top-0 h-full w-full bg-black bg-opacity-50'></div>
 
         {/* Content Over the Video */}
-        <div className='relative z-10 flex h-full items-center justify-center text-center text-white'>
+        <div className='relative z-10 flex h-full items-center justify-center text-center text-black text-stroke-red'>
           <div>
             <h1 className='text-4xl font-bold sm:text-6xl'>
               Luck is what happens when preparation meets opportunity
