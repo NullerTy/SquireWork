@@ -6,7 +6,7 @@ const Page: React.FC = () => {
 
   const slides = [
     { id: 1, content: 'Giga Chad', image: '/beautiful.jpg' },
-    { id: 2, content: 'Sustenance for a man', image: '/creagif.gif' },
+    { id: 2, content: 'Frames go brrrrr', image: '/creagif.gif' },
     { id: 3, content: 'Its fine', image: '/cute.jpg' }, // Example with an image
   ]
 
@@ -15,8 +15,8 @@ const Page: React.FC = () => {
       {/* Main text */}
       <div className='mb-20 mt-20 flex-wrap'>
         <h1 className='text-wrap text-center text-5xl font-medium [text-shadow:_1px_2px_3px_rgba(0,0,0,0.2);]'>
-          <span className='text-7xl text-blue-600'>Dovydo</span>{' '}
-          <span className='text-7xl text-emerald-500'>Portfolio</span>
+          <span className='text-7xl text-white'>Dovydo</span>{' '}
+          <span className='text-7xl text-white'>Portfolio</span>
         </h1>
       </div>
       {/* Line */}

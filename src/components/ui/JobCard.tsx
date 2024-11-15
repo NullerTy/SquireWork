@@ -23,7 +23,7 @@ const JobCard = ({
   const imagePath = image && image.trim() !== '' ? image : '/cute.jpg' // Default fallback image
 
   return (
-    <div className='mb-8 rounded-lg bg-white p-6 shadow-lg'>
+    <div className='bg-gray mb-8 rounded-lg p-6 shadow-lg'>
       {/* Conditionally render the image if a valid path exists */}
       {imagePath && (
         <Image

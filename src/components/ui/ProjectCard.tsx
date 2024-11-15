@@ -15,7 +15,7 @@ export const ProjectCard = ({
   const imagePath = image && image.trim() !== '' ? image : '/cute.jpg' // Default image path
 
   return (
-    <div className='overflow-hidden rounded-lg bg-white shadow-lg'>
+    <div className='bg-gray overflow-hidden rounded-lg shadow-lg'>
       {imagePath && (
         <Image
           src={imagePath} // Use the image path here

@@ -29,7 +29,7 @@ export function TopBar() {
   }, [])
   // TODO set color of topbar to same as background light and dark so that tranparency works ( example: bg-[#FFFF] )
   return (
-    <div className='left-0 top-0 w-full bg-[#3C3744] bg-opacity-60 backdrop-blur-sm dark:bg-[#0e0e0e] dark:bg-opacity-50'>
+    <div className='left-0 top-0 w-full bg-opacity-60 backdrop-blur-sm dark:bg-[#0e0e0e] dark:bg-opacity-50'>
       <div
         className={cn(
           'shadow-transition border-border duration-300',
@@ -45,7 +45,7 @@ export function TopBar() {
           <div className='flex items-center justify-center gap-x-4 text-sm'>
             {/* LOGO */}
             <Link href='/'>
-              <Icons.logo className='mr-3 w-40 cursor-pointer fill-primary pb-1' />
+              <Icons.logo className='mr-3 w-40 cursor-pointer fill-primary stroke-current pb-1 text-red-600' />
             </Link>
             <div className='flex flex-row-reverse gap-x-4 lg:flex-row'>
               {/* MAIN NAV */}

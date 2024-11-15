@@ -24,32 +24,21 @@ const Page: React.FC = () => {
 
       <section className='mb-16 w-full max-w-6xl'>
         <h2 className='mb-4 text-3xl font-semibold text-gray-700'>Gallery</h2>
-        <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3'>
+        <div className='bg-gray grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3'>
           {[1, 2, 3, 4, 5, 6].map((item) => (
             <div
               key={item}
-              className='flex h-48 items-center justify-center overflow-hidden rounded-lg bg-gray-200 shadow-md'
+              className='border-light-blue-500 flex h-48 items-center justify-center overflow-hidden rounded-lg border-4 border-opacity-100 bg-gray-200 shadow-md'
             >
               <Image
                 src='/beautiful.jpg'
                 alt={`Image ${item}`}
-                width={150}
-                height={150}
-                className='rounded-lg'
+                width={250}
+                height={1}
+                className='rounded:lg border-red border-4'
               />
             </div>
           ))}
-        </div>
-      </section>
-
-      <section className='mb-16 w-full max-w-3xl'>
-        <h2 className='mb-4 text-3xl font-semibold text-gray-700'>
-          nctio architecto debitis nostrum. Id?
-        </h2>
-        <div className='space-y-4 rounded-lg bg-gray-100 p-6 shadow'>
-          <p className='text-lg text-gray-600'> Lorem</p>
-          <p className='text-lg text-gray-600'> Lorem</p>
-          <p className='text-lg text-gray-600'> Lorem</p>
         </div>
       </section>
 
@@ -75,7 +64,7 @@ const Page: React.FC = () => {
             Instagram
           </a>
           <a
-            href='https://youtube.com/yourChannel'
+            href='https://youtube.com/@holyauth'
             target='_blank'
             rel='noopener noreferrer'
             className='rounded-lg bg-red-500 px-4 py-2 text-white shadow'

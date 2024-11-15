@@ -20,14 +20,14 @@ const MobileNav: React.FC<NavProps> = ({ items }) => {
         </SheetTrigger>
         <SheetContent side='left' className='w-11/12'>
           <Link href='/'>
-            <Icons.logo className='w-40 cursor-pointer fill-primary pb-6' />
+            <Icons.logo className='w-40 cursor-pointer fill-primary stroke-current pb-6 text-red-600' />
           </Link>
           <nav>
-            <ul className='space-y-4'>
+            <ul className='space-y-4 text-white'>
               {items?.map((item) => (
                 <li key={item.href}>
                   <Link
-                    className='text-lg font-medium text-gray-800 hover:text-primary'
+                    className='text-lg font-medium text-white hover:text-primary'
                     href={item.href}
                   >
                     {item.title}
