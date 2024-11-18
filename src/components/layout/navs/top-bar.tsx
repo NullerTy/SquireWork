@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-
 import { cn } from '@/lib/utils'
 import { Icons } from '@/components/icons'
 
@@ -27,7 +26,7 @@ export function TopBar() {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
-  // TODO set color of topbar to same as background light and dark so that tranparency works ( example: bg-[#FFFF] )
+
   return (
     <div className='left-0 top-0 w-full bg-opacity-60 backdrop-blur-sm dark:bg-[#0e0e0e] dark:bg-opacity-50'>
       <div

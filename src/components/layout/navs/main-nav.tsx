@@ -8,14 +8,10 @@ interface MainNavProps {
   items?: NavItem[]
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const MainNav: React.FC<MainNavProps> = ({ items }) => {
-  // const segment = useSelectedLayoutSegment()
-  // console.log('🚀 ~ segment:', segment)
-
   const itemsList = items?.map((item) => (
     <Link
-      className='text-black text-stroke-purple'
+      className='hover:text-primary/60 text-black transition-colors duration-300 text-stroke-purple hover:underline'
       key={item.title}
       href={item.href}
     >
@@ -25,7 +21,7 @@ const MainNav: React.FC<MainNavProps> = ({ items }) => {
 
   return (
     <>
-      {/* This SHOULD BE HIDDEN BY DEFAULT*/}
+      {/* This SHOULD BE HIDDEN BY DEFAULT */}
       <div className='mr-12 hidden gap-12 lg:flex'>
         {/* MENU */}
         <div className='mr-12 flex gap-12'>{itemsList}</div>

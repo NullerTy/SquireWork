@@ -24,11 +24,11 @@ const Footer: React.FC<Props> = ({ className }) => {
             <PMuted>All rights reserved.</PMuted>
           </div>
           <div className='mt-6 flex h-5 items-center space-x-4 text-black text-stroke-purple md:ms-2 md:mt-0 md:space-x-2'>
-            <P className='hover:text-primary/60 underline'>
+            <P className='hover:text-primary/60 underline transition-colors duration-300'>
               <Link href='/info/politika-zasebnosti'>Privacy</Link>
             </P>
             <Separator orientation='vertical' />
-            <P className='hover:text-primary/60 underline'>
+            <P className='hover:text-primary/60 underline transition-colors duration-300'>
               <Link href='/info/piskotki'>Cookies</Link>
             </P>
             <Separator orientation='vertical' />
@@ -38,4 +38,5 @@ const Footer: React.FC<Props> = ({ className }) => {
     </footer>
   )
 }
+
 export default Footer

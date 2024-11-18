@@ -27,7 +27,7 @@ const MobileNav: React.FC<NavProps> = ({ items }) => {
               {items?.map((item) => (
                 <li key={item.href}>
                   <Link
-                    className='text-lg font-medium text-black text-stroke-purple hover:text-primary'
+                    className='rounded p-2 text-lg font-medium text-black transition-all duration-300 text-stroke-purple hover:bg-pink-600 hover:text-primary'
                     href={item.href}
                   >
                     {item.title}
