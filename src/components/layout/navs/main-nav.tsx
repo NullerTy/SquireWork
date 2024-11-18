@@ -15,7 +15,7 @@ const MainNav: React.FC<MainNavProps> = ({ items }) => {
 
   const itemsList = items?.map((item) => (
     <Link
-      className='text-black text-stroke-red'
+      className='text-black text-stroke-purple'
       key={item.title}
       href={item.href}
     >

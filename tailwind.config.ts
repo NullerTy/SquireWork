@@ -99,6 +99,9 @@ const config: Config = {
         '.text-stroke-blue': {
           '-webkit-text-stroke': '2px blue', // blue
         },
+        '.text-stroke-purple': {
+          '-webkit-text-stroke': '2px purple', // purple
+        },
         '.text-stroke-pink': {
           '-webkit-text-stroke': '2px pink', // pink
         },

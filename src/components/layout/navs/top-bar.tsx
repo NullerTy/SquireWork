@@ -45,7 +45,7 @@ export function TopBar() {
           <div className='flex items-center justify-center gap-x-4 text-sm'>
             {/* LOGO */}
             <Link href='/'>
-              <Icons.logo className='mr-3 w-40 cursor-pointer fill-primary stroke-current pb-1 text-red-600' />
+              <Icons.logo className='mr-3 w-40 cursor-pointer fill-primary stroke-current pb-1 text-pink-600' />
             </Link>
             <div className='flex flex-row-reverse gap-x-4 lg:flex-row'>
               {/* MAIN NAV */}
