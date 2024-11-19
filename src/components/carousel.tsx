@@ -3,17 +3,16 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-// Define slide properties
 interface Slide {
   id: number
-  content: string // JSX content or text for the slide
-  bgColor?: string // Optional background color
-  image?: string // Optional image for the slide
+  content: string
+  image?: string // Path to your transparent PNG/GIF
 }
 
 interface CarouselProps {
-  slides: Slide[] // Array of slides
-  height?: string // Optional height for the carousel (default is "400px")
+  slides: Slide[]
+  height?: string
+  width?: string
 }
 
 const Carousel: React.FC<CarouselProps> = ({ slides, height = '400px' }) => {
@@ -26,7 +25,7 @@ const Carousel: React.FC<CarouselProps> = ({ slides, height = '400px' }) => {
       setIsMobile(window.innerWidth < 768)
     }
 
-    handleResize() // Check on initial load
+    handleResize()
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
@@ -46,37 +45,48 @@ const Carousel: React.FC<CarouselProps> = ({ slides, height = '400px' }) => {
   return (
     <div
       className='relative w-full overflow-hidden'
-      style={{ height }} // Allow dynamic height adjustment
+      style={{ height }} // Carousel height
     >
       {/* Slides */}
-      <div className='relative h-full w-full text-black text-stroke-red'>
+      <div className='relative h-full w-full'>
         <AnimatePresence mode='wait'>
           {slides.map((slide, index) =>
             index === currentIndex ? (
               <motion.div
                 key={slide.id}
-                className={`absolute left-0 top-0 flex h-full w-full items-center justify-center text-2xl text-white`}
-                style={{
-                  backgroundColor: slide.bgColor || 'transparent',
-                  backgroundImage: slide.image
-                    ? `url(${slide.image})`
-                    : undefined,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                }}
+                className='absolute left-0 top-0 flex h-full w-full items-center justify-center'
                 initial={{ opacity: 0, x: 100 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -100 }}
                 transition={{ duration: 0.5 }}
+                style={{
+                  backgroundColor: 'transparent', // Ensure background is transparent
+                }}
               >
-                {slide.content}
+                {/* Image */}
+                {slide.image && (
+                  <img
+                    src={slide.image}
+                    alt={`Slide ${slide.id}`}
+                    style={{
+                      maxWidth: '1200px', // Responsive sizing
+                      maxHeight: '1000px', // Ensure it fits within the carousel
+                    }}
+                  />
+                )}
+                {/* Content */}
+                {slide.content && (
+                  <div className='absolute bottom-4 text-center text-white'>
+                    {slide.content}
+                  </div>
+                )}
               </motion.div>
             ) : null
           )}
         </AnimatePresence>
       </div>
 
-      {/* Arrows for navigation (visible on desktop only) */}
+      {/* Navigation Arrows (Desktop) */}
       {!isMobile && (
         <>
           <button
@@ -94,7 +104,7 @@ const Carousel: React.FC<CarouselProps> = ({ slides, height = '400px' }) => {
         </>
       )}
 
-      {/* Dots for navigation */}
+      {/* Navigation Dots */}
       <div className='absolute bottom-4 z-10 flex w-full justify-center space-x-2'>
         {slides.map((_, index) => (
           <button

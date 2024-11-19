@@ -1,6 +1,6 @@
 'use client'
-import Footer from '@/components/layout/navs/footer'
-import { TopBar } from '@/components/layout/navs/top-bar'
+// import Footer from '@/components/layout/navs/footer'
+// import { TopBar } from '@/components/layout/navs/top-bar'
 import { AnimatePresence, motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 
@@ -13,7 +13,7 @@ const Layout: React.FC<Props> = ({ children }) => {
 
   return (
     <>
-      <TopBar />
+      {/* <TopBar /> */}
       <AnimatePresence mode='wait' initial={false}>
         <motion.div
           key={pathname}
@@ -25,7 +25,7 @@ const Layout: React.FC<Props> = ({ children }) => {
           {children}
         </motion.div>
       </AnimatePresence>
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }
