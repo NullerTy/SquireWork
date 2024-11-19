@@ -8,15 +8,13 @@ type Particle = {
   dx: number
   dy: number
   size: number
+  color: string
 }
 
 const Page: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [activeSection, setActiveSection] = useState<string | null>(null)
   const [isFading, setIsFading] = useState(false)
-
-  // State for managing the GIFs that are visible
-  const [gifUrl, setGifUrl] = useState<string | null>(null)
 
   // Canvas animation logic
   useEffect(() => {
@@ -36,8 +34,8 @@ const Page: React.FC = () => {
     window.addEventListener('resize', handleResize)
 
     const particles: Particle[] = []
-    const particleCount = 100
-    const colors = ['#6A0DAD', '#800080', '#9932CC', '#BA55D3']
+    const particleCount = 200
+    const colors = ['#6A0DAD', '#800080', '#9932CC', '#BA55D3', '#FF69B4']
 
     // Create particles
     for (let i = 0; i < particleCount; i++) {
@@ -47,37 +45,38 @@ const Page: React.FC = () => {
         dx: (Math.random() - 0.5) * 2,
         dy: (Math.random() - 0.5) * 2,
         size: Math.random() * 3 + 1,
+        color: colors[Math.floor(Math.random() * colors.length)],
       })
     }
 
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-      // Draw the purple radial gradient background
-      const gradient = ctx.createRadialGradient(
-        canvas.width / 2,
-        canvas.height / 2,
+      // Draw gradient background
+      const gradient = ctx.createLinearGradient(
         0,
-        canvas.width / 2,
-        canvas.height / 2,
-        canvas.width / 2
+        0,
+        canvas.width,
+        canvas.height
       )
-      gradient.addColorStop(0, '#6A0DAD')
-      gradient.addColorStop(1, '#000')
+      gradient.addColorStop(0, '#1e90ff') // Dodger Blue
+      gradient.addColorStop(1, '#ff69b4') // Hot Pink
       ctx.fillStyle = gradient
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
+      // Draw particles
       particles.forEach((particle) => {
         ctx.beginPath()
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
-        ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)]
+        ctx.fillStyle = particle.color
         ctx.fill()
 
         particle.x += particle.dx
         particle.y += particle.dy
 
-        if (particle.x < 0 || particle.x > canvas.width) particle.dx *= -1
-        if (particle.y < 0 || particle.y > canvas.height) particle.dy *= -1
+        // Wrap around edges
+        if (particle.x < 0) particle.x = canvas.width
+        if (particle.x > canvas.width) particle.x = 0
+        if (particle.y < 0) particle.y = canvas.height
+        if (particle.y > canvas.height) particle.y = 0
       })
 
       requestAnimationFrame(animate)
@@ -90,34 +89,13 @@ const Page: React.FC = () => {
     }
   }, [])
 
-  // GIFs to display
-  const gifs = ['/bit.gif', '/bit.gif', '/bit.gif']
-
-  useEffect(() => {
-    const gifInterval = setInterval(() => {
-      // Randomly select a GIF
-      const randomGif = gifs[Math.floor(Math.random() * gifs.length)]
-      setGifUrl(randomGif)
-
-      // Set the GIF to disappear after a random interval (e.g., 3-5 seconds)
-      setTimeout(
-        () => {
-          setGifUrl(null)
-        },
-        Math.random() * 2000 + 3000
-      ) // 3-5 seconds
-    }, 5000) // New GIF every 5 seconds
-
-    return () => clearInterval(gifInterval)
-  }, [])
-
   const contentMap: Record<string, string> = {
     Home: '',
-    FAQ: 'Can i use your code? No.',
+    FAQ: 'Can I use your code? No.',
     Contact: 'Discord: macroclock Github: NullerTy',
     Info: 'As a versatile developer with a solid foundation in JavaScript, HTML, CSS, and experience across Next.js and Tailwind CSS, I’m dedicated to creating seamless, responsive front-end experiences. My background in C# and C++ programming adds a deeper layer to my understanding of software development, allowing me to adapt to diverse technical challenges. Alongside my coding skills, I bring leadership experience and a passion for creating and editing visual content. My work reflects a balanced mix of technical precision and creative vision, crafted to make a meaningful impact across platforms',
     Projects:
-      'This is currently my pride of jewel but i have worked on simple game account shops with friends.',
+      'This is currently my pride of jewel but I have worked on simple game account shops with friends.',
   }
 
   const handleButtonClick = (section: string) => {
@@ -140,20 +118,6 @@ const Page: React.FC = () => {
 
         {/* Black Overlay */}
         <div className='absolute left-0 top-0 z-10 h-full w-full bg-black bg-opacity-50'></div>
-
-        {/* GIF Background */}
-        {gifUrl && (
-          <div
-            className='absolute left-0 top-0 z-0 h-full w-full'
-            style={{
-              backgroundImage: `url(${gifUrl})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              opacity: 0.7,
-              transition: 'opacity 1s ease-in-out',
-            }}
-          ></div>
-        )}
 
         {/* Content Section */}
         <div className='relative z-20 flex min-h-screen'>
