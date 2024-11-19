@@ -12,8 +12,11 @@ type Particle = {
 
 const Page: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const [activeSection, setActiveSection] = useState<string | null>(null) // Track the active button
-  const [isFading, setIsFading] = useState(false) // Track fade-out animation for text
+  const [activeSection, setActiveSection] = useState<string | null>(null)
+  const [isFading, setIsFading] = useState(false)
+
+  // State for managing the GIFs that are visible
+  const [gifUrl, setGifUrl] = useState<string | null>(null)
 
   // Canvas animation logic
   useEffect(() => {
@@ -87,11 +90,26 @@ const Page: React.FC = () => {
     }
   }, [])
 
-  // const slides = [
-  //   { id: 1, content: '', image: '/latin1.gif' },
-  //   { id: 2, content: '', image: '/bud1.gif' },
-  //   { id: 3, content: '', image: '/marc2.gif' },
-  // ]
+  // GIFs to display
+  const gifs = ['/bit.gif', '/bit.gif', '/bit.gif']
+
+  useEffect(() => {
+    const gifInterval = setInterval(() => {
+      // Randomly select a GIF
+      const randomGif = gifs[Math.floor(Math.random() * gifs.length)]
+      setGifUrl(randomGif)
+
+      // Set the GIF to disappear after a random interval (e.g., 3-5 seconds)
+      setTimeout(
+        () => {
+          setGifUrl(null)
+        },
+        Math.random() * 2000 + 3000
+      ) // 3-5 seconds
+    }, 5000) // New GIF every 5 seconds
+
+    return () => clearInterval(gifInterval)
+  }, [])
 
   const contentMap: Record<string, string> = {
     Home: '',
@@ -103,15 +121,12 @@ const Page: React.FC = () => {
   }
 
   const handleButtonClick = (section: string) => {
-    if (section === activeSection) return // Prevent re-clicking on the same button
-
-    setIsFading(true) // Start fade-out effect
-
-    // Wait for fade-out animation to finish before updating activeSection
+    if (section === activeSection) return
+    setIsFading(true)
     setTimeout(() => {
       setActiveSection(section)
       setIsFading(false)
-    }, 500) // Duration matches CSS transition
+    }, 500)
   }
 
   return (
@@ -126,13 +141,25 @@ const Page: React.FC = () => {
         {/* Black Overlay */}
         <div className='absolute left-0 top-0 z-10 h-full w-full bg-black bg-opacity-50'></div>
 
+        {/* GIF Background */}
+        {gifUrl && (
+          <div
+            className='absolute left-0 top-0 z-0 h-full w-full'
+            style={{
+              backgroundImage: `url(${gifUrl})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              opacity: 0.7,
+              transition: 'opacity 1s ease-in-out',
+            }}
+          ></div>
+        )}
+
         {/* Content Section */}
         <div className='relative z-20 flex min-h-screen'>
-          {/* Left Side Buttons */}
           <div className='flex w-1/3 flex-col items-center justify-center space-y-4'>
             {Object.keys(contentMap).map((section) =>
               section === activeSection ? (
-                // Render a dot for the active button
                 <div
                   key={section}
                   className='h-4 w-4 rounded-full bg-purple-600 transition-transform duration-300'
@@ -149,9 +176,7 @@ const Page: React.FC = () => {
             )}
           </div>
 
-          {/* Right Side Content */}
           <div className='w-2/3 p-10'>
-            {/* Main Heading */}
             <div className='mb-10 mt-20 text-black text-stroke-purple'>
               <h1 className='text-wrap text-center text-5xl font-medium [text-shadow:_1px_2px_3px_rgba(0,0,0,0.2);]'>
                 <span className='text-7xl'>𝕯𝖔𝖛𝖞𝖉𝖔</span>{' '}
@@ -159,51 +184,13 @@ const Page: React.FC = () => {
               </h1>
             </div>
 
-            {/* Dynamic Content Section */}
             <div
-              className={`mt-10 transition-opacity duration-500 ${
-                isFading ? 'opacity-0' : 'opacity-100'
-              }`}
+              className={`mt-10 transition-opacity duration-500 ${isFading ? 'opacity-0' : 'opacity-100'}`}
             >
               <p className='text-lg text-white'>{contentMap[activeSection!]}</p>
             </div>
           </div>
         </div>
-
-        {/* Carousel Section
-        <main className="relative z-20 flex h-screen w-full flex-col items-center justify-center">
-          <Carousel slides={slides} height="800px" />
-        </main>*/}
-
-        {/* Video Section*/}
-        {/* <div className="relative mt-8 h-screen w-full overflow-hidden border-4 border-black">
-          <div className="absolute left-0 top-0 h-full w-full">
-            <iframe
-              className="h-full w-full object-cover"
-              src="https://www.youtube.com/embed/nBJ-kxjrRgY?autoplay=1&mute=1&loop=1&playlist=nBJ-kxjrRgY"
-              title="Background Video"
-              allow="autoplay; fullscreen"
-              frameBorder="0"
-            />
-          </div>
-
-    
-
-          
-          <div className="absolute left-0 top-0 h-full w-full bg-black bg-opacity-50"></div>
-
-          
-          <div className="relative z-10 flex h-full items-center justify-center text-center">
-            <div>
-              <h1 className="text-4xl font-bold text-black text-stroke-purple sm:text-6xl">
-                Luck is what happens when preparation meets opportunity
-              </h1>
-              <p className="mt-6 text-lg text-purple-600 sm:text-2xl">
-                Become a paranoid schizophrenic so you are always competing
-              </p>
-            </div>
-          </div>
-        </div> */}
       </div>
     </>
   )
