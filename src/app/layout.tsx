@@ -12,8 +12,8 @@ const cal = localFont({
 })
 
 export const metadata: Metadata = {
-  title: 'Portfolio with articles',
-  description: 'rSQ template',
+  title: 'Alteria Corp',
+  description: 'Alteria Corp',
 }
 
 export default function RootLayout({

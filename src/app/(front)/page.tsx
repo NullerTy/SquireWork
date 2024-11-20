@@ -27,7 +27,7 @@ const Page: React.FC = () => {
   }
 
   return (
-    <div className='relative min-h-screen w-full font-mono'>
+    <div className='mw-20 relative min-h-screen w-full border-2 border-sky-500 font-mono'>
       {/* Particle Background */}
       <ParticleCanvas />
 
@@ -47,7 +47,7 @@ const Page: React.FC = () => {
           {/* Content Display */}
           <div className='w-full text-center md:w-2/3'>
             <div className='mb-6 text-9xl font-medium text-black text-stroke-purple'>
-              <h1 className='text-5xl'>
+              <h1 className='mb-8 grid h-32 grid-cols-2 gap-4 text-5xl'>
                 <span>𝕯𝖔𝖛𝖞𝖉𝖔</span> <span>𝓟𝓸𝓻𝓽𝓯𝓸𝓵𝓲𝓸</span>
               </h1>
             </div>
