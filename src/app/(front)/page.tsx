@@ -34,8 +34,8 @@ const Page: React.FC = () => {
     window.addEventListener('resize', handleResize)
 
     const particles: Particle[] = []
-    const particleCount = 200
-    const colors = ['#6A0DAD', '#800080', '#9932CC', '#BA55D3', '#FF69B4']
+    const particleCount = 100000
+    const colors = ['#484030', '#585f630', '#003434', '#cd1ae5', '#252e33']
 
     // Create particles
     for (let i = 0; i < particleCount; i++) {
