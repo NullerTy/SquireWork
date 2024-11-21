@@ -4,12 +4,12 @@ import React, { useState, useEffect } from 'react'
 import ParticleCanvas from '@/components/ParticleCanvas'
 import NavigationButtons from '@/components/NavigationButtons'
 import ContentDisplay from '@/components/ContentDisplay'
-import LoadingScreen from '@/components/LoadingScreen' // Import the LoadingScreen component
+import LoadingScreen from '@/components/LoadingScreen'
 
 const Page: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string | null>(null)
   const [isFading, setIsFading] = useState(false)
-  const [isLoading, setIsLoading] = useState(true) // Track loading state
+  const [isLoading, setIsLoading] = useState(true)
 
   const contentMap: Record<string, string> = {
     Home: '',
@@ -28,26 +28,30 @@ const Page: React.FC = () => {
     }, 500)
   }
 
-  // Simulate loading delay
   useEffect(() => {
     setTimeout(() => {
-      setIsLoading(false) // Hide loading screen after 2 seconds
+      setIsLoading(false)
     }, 2000)
   }, [])
 
   return (
     <div className='relative min-h-screen w-full bg-gradient-to-r from-purple-800 via-black to-purple-900 font-mono'>
-      {/* If still loading, show the LoadingScreen */}
       {isLoading && <LoadingScreen />}
 
       <div className='flex min-h-screen items-center justify-center px-5'>
-        <div className='relative flex min-h-[75vh] w-full max-w-5xl flex-col items-center border-4 border-purple-500 bg-black/60 p-6 shadow-xl md:flex-row'>
+        {/* Main Container */}
+        <div className='relative flex h-full min-h-[75vh] w-full max-w-5xl flex-col border-4 border-purple-500 bg-black/60 p-6 shadow-xl md:flex-row'>
+          {/* Background Animation */}
           <div className='absolute inset-0 overflow-hidden rounded-md'>
             <ParticleCanvas />
           </div>
 
-          <div className='relative z-20 flex flex-col items-center justify-center space-y-10 md:flex-row md:space-x-10 md:space-y-0'>
-            <div className='mb-6 w-full md:mb-0 md:w-1/3'>
+          {/* Main Content */}
+          <div className='md:space-x h-full-10 relative z-20 flex h-full w-full space-y-10 md:flex-row md:space-y-0'>
+            {/* Navigation Buttons */}
+            <div
+              className='w-full flex-shrink-0 md:w-[250px]' // Fixed width for buttons
+            >
               <NavigationButtons
                 sections={Object.keys(contentMap)}
                 activeSection={activeSection}
@@ -55,7 +59,8 @@ const Page: React.FC = () => {
               />
             </div>
 
-            <div className='w-full text-center md:w-2/3'>
+            {/* Content Display */}
+            <div className='w-full flex-grow text-center md:w-auto'>
               <div className='mb-6 text-center text-3xl font-medium text-white'>
                 <h1 className='mb-4 text-4xl'>
                   <span>Dovydo</span> Portfolio
@@ -64,7 +69,9 @@ const Page: React.FC = () => {
 
               <div className='transition-opacity duration-500'>
                 <div
-                  className={`transition-opacity duration-500 ${isFading ? 'opacity-0' : 'opacity-100'}`}
+                  className={`transition-opacity duration-500 ${
+                    isFading ? 'opacity-0' : 'opacity-100'
+                  }`}
                 >
                   <ContentDisplay
                     content={
