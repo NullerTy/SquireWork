@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 
-const BackgroundCanvas: React.FC = () => {
+const ParticleCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -24,27 +24,26 @@ const BackgroundCanvas: React.FC = () => {
     const fragmentShaderSource = `
       precision mediump float;
 
-uniform vec2 resolution;
-uniform float time;
+      uniform vec2 resolution;
+      uniform float time;
 
-void main() {
-    vec2 uv = gl_FragCoord.xy / resolution - 0.5;
-    uv.x *= resolution.x / resolution.y;
-    uv *= 10.0;
-    float a = uv.x + sin(cos(time / 5.0) * 19.0 * uv.y);
-    float b = uv.y - sin(cos(time / 5.0) * 19.0 * uv.x);
-    float f = a * sin(time) - b * cos(time);
-    float v = smoothstep(0.3, 0.7, f);
+      void main() {
+          vec2 uv = gl_FragCoord.xy / resolution - 0.5;
+          uv.x *= resolution.x / resolution.y;
+          uv *= 10.0;
+          float a = uv.x + sin(cos(time / 5.0) * 19.0 * uv.y);
+          float b = uv.y - sin(cos(time / 5.0) * 19.0 * uv.x);
+          float f = a * sin(time) - b * cos(time);
+          float v = smoothstep(0.3, 0.7, f);
 
-    // Define colors: black and dark purple
-    vec3 color1 = vec3(0.0, 0.0, 0.0); // Black
-    vec3 color2 = vec3(0.8, 0.0, 0.5); // Dark purple
+          // Define colors: black and dark purple
+          vec3 color1 = vec3(0.0, 0.0, 0.0); // Black
+          vec3 color2 = vec3(0.4, 0.0, 0.5); // Dark purple
 
-    // Interpolate between colors
-    vec3 color = mix(color1, color2, v);
-    gl_FragColor = vec4(color, 1.0);
-}
-
+          // Interpolate between colors
+          vec3 color = mix(color1, color2, v);
+          gl_FragColor = vec4(color, 1.0);
+      }
     `
 
     // Create shaders
@@ -121,10 +120,12 @@ void main() {
       requestAnimationFrame(render)
     }
 
-    // Resize canvas
+    // Resize canvas to fit its container
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
+      const parent = canvas.parentElement
+      if (!parent) return
+      canvas.width = parent.clientWidth
+      canvas.height = parent.clientHeight
       gl.viewport(0, 0, canvas.width, canvas.height)
     }
 
@@ -138,7 +139,7 @@ void main() {
     }
   }, [])
 
-  return <canvas ref={canvasRef} className='absolute inset-0 h-full w-full' />
+  return <canvas ref={canvasRef} className='absolute h-full w-full' />
 }
 
-export default BackgroundCanvas
+export default ParticleCanvas
