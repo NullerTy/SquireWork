@@ -4,6 +4,12 @@ import bcrypt from 'bcrypt'
 
 const prisma = new PrismaClient()
 
+// Define the structure of the expected request body
+interface RegisterRequestBody {
+  email: string
+  password: string
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -12,7 +18,8 @@ export default async function handler(
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
-  const { email, password } = req.body
+  // Ensure the request body matches the expected structure
+  const { email, password } = req.body as RegisterRequestBody
 
   try {
     // Check if the user already exists
@@ -24,7 +31,7 @@ export default async function handler(
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10)
 
-    // Save the user to the database
+    // Create the user in the database
     const user = await prisma.user.create({
       data: {
         email,
@@ -32,9 +39,9 @@ export default async function handler(
       },
     })
 
-    res.status(201).json({ message: 'User created', userId: user.id })
+    res.status(201).json({ message: 'User registered', userId: user.id })
   } catch (error) {
-    console.error('Error creating user:', error)
+    console.error('Error during registration:', error)
     res.status(500).json({ error: 'Internal server error' })
   }
 }
