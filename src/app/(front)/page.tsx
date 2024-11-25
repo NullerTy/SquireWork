@@ -35,48 +35,46 @@ const Page: React.FC = () => {
   }, [])
 
   return (
-    <div className='relative min-h-screen w-full bg-gradient-to-r from-purple-800 via-black to-purple-900 font-mono'>
+    <div className='relative min-h-screen bg-gradient-to-r from-purple-800 via-black to-purple-900 font-mono'>
       {isLoading && <LoadingScreen />}
 
       <div className='flex min-h-screen items-center justify-center px-5'>
         {/* Main Container */}
-        <div className='relative flex h-full min-h-[75vh] w-full max-w-5xl flex-col border-4 border-purple-500 bg-black/60 p-6 shadow-xl md:flex-row'>
+        <div className='relative flex w-full max-w-5xl flex-col border-4 border-purple-500 bg-black/60 p-4 shadow-xl md:min-h-[75vh] md:flex-row'>
           {/* Background Animation */}
           <div className='absolute inset-0 overflow-hidden rounded-md'>
             <ParticleCanvas />
           </div>
 
           {/* Main Content */}
-          <div className='md:space-x h-full-10 relative z-20 flex h-full w-full space-y-10 md:flex-row md:space-y-0'>
+          <div className='relative z-20 flex w-full flex-col items-center md:flex-row'>
             {/* Navigation Buttons */}
-            <div
-              className='w-full flex-shrink-0 md:w-[250px]' // Fixed width for buttons
-            >
-              <NavigationButtons
-                sections={Object.keys(contentMap)}
-                activeSection={activeSection}
-                onClick={handleButtonClick}
-              />
+            <div className='flex h-auto w-full flex-shrink-0 items-center justify-center md:h-full md:w-[250px]'>
+              <div className='flex h-full flex-col items-center justify-center gap-4'>
+                <NavigationButtons
+                  sections={Object.keys(contentMap)}
+                  activeSection={activeSection}
+                  onClick={handleButtonClick}
+                />
+              </div>
             </div>
 
             {/* Content Display */}
-            <div className='w-full flex-grow text-center md:w-auto'>
-              <div className='mb-6 text-center text-3xl font-medium text-white'>
+            <div className='flex h-72 w-full flex-grow flex-col items-center justify-center text-center'>
+              <div className='mb-6 h-48 w-full text-center text-3xl font-medium text-transparent text-stroke-purple'>
                 <h1 className='mb-4 text-4xl'>
-                  <span>Dovydo</span> Portfolio
+                  <span>𝓓𝓸𝓿𝔂𝓭𝓸</span> 𝓟𝓸𝓻𝓽𝓯𝓸𝓵𝓲𝓸
                 </h1>
               </div>
 
-              <div className='transition-opacity duration-500'>
+              <div className='flex h-full w-full items-center justify-center transition-opacity duration-500'>
                 <div
                   className={`transition-opacity duration-500 ${
                     isFading ? 'opacity-0' : 'opacity-100'
                   }`}
                 >
                   <ContentDisplay
-                    content={
-                      contentMap[activeSection!] || 'Welcome to my portfolio!'
-                    }
+                    content={contentMap[activeSection!]}
                     isFading={isFading}
                   />
                 </div>

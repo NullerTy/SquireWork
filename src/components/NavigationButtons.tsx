@@ -1,4 +1,3 @@
-// NavigationButtons.tsx
 import React from 'react'
 
 type NavigationButtonsProps = {
@@ -18,14 +17,13 @@ const NavigationButtons: React.FC<NavigationButtonsProps> = ({
         <button
           key={section}
           onClick={() => onClick(section)}
-          className={`transition-all duration-300 ${
+          className={`font-medium text-white transition-all duration-300 ${
             activeSection === section
-              ? 'h-4 w-4 rounded-full bg-purple-500' // When active, show a dot
-              : 'h-10 w-10 rounded-md border-2 border-purple-500' // When inactive, show a square
+              ? 'h-4 w-4 rounded-full bg-purple-500' // Active button (dot)
+              : 'h-10 w-32 rounded-md border-2 border-purple-500 hover:bg-purple-700 hover:text-white' // Inactive button (full word)
           }`}
         >
-          {activeSection === section ? null : section[0]}{' '}
-          {/* Show first letter when not active */}
+          {activeSection === section ? null : section} {/* Show full word */}
         </button>
       ))}
     </div>
