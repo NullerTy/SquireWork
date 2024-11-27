@@ -7,7 +7,7 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node", // Use 'node' for compatibility with Next.js
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -17,9 +17,11 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".", // Add this to set the base directory
     "paths": {
-      "@/*": ["./src/*"],
-      "@/components/*": ["./src/components/*"]
+      "@/*": ["src/*"], // Resolve the '@' alias to 'src/'
+      "@/components/*": ["src/components/*"], // Resolve to components directory
+      "@/app/*": ["src/app/*"] // Add this if you're using the 'app' folder as well
     },
     "target": "ES2017"
   },
