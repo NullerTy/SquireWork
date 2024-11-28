@@ -1,21 +1,23 @@
 'use server'
 
 import prisma from '@/lib/db'
-import bcrypt from 'bcrypt' // Hashing library
+import bcrypt from 'bcrypt'
 
-export async function registerUser(formData: FormData) {
+// Register User
+export async function registerUser(
+  formData: FormData
+): Promise<{ success: boolean; message: string }> {
   const email = formData.get('email')?.toString()
   const password = formData.get('password')?.toString()
   const confirmPassword = formData.get('confirmPassword')?.toString()
 
-  // Validate required fields
   if (!email || !password || !confirmPassword) {
-    throw new Error('All fields are required.')
+    return { success: false, message: 'All fields are required.' }
   }
 
   // Check if passwords match
   if (password !== confirmPassword) {
-    throw new Error('Passwords do not match.')
+    return { success: false, message: 'Passwords do not match.' }
   }
 
   // Check if the email is already in use
@@ -24,7 +26,7 @@ export async function registerUser(formData: FormData) {
   })
 
   if (existingUser) {
-    throw new Error('Email is already registered.')
+    return { success: false, message: 'Email is already registered.' }
   }
 
   // Hash the password
@@ -38,5 +40,33 @@ export async function registerUser(formData: FormData) {
     },
   })
 
-  console.log('User registered successfully:', email)
+  return { success: true, message: 'User registered successfully.' }
+}
+
+// Login User
+export async function loginUser(
+  formData: FormData
+): Promise<{ success: boolean; message: string }> {
+  const email = formData.get('email')?.toString()
+  const password = formData.get('password')?.toString()
+
+  if (!email || !password) {
+    return { success: false, message: 'Email and password are required.' }
+  }
+
+  const user = await prisma.user.findUnique({
+    where: { email },
+  })
+
+  if (!user) {
+    return { success: false, message: 'User not found.' }
+  }
+
+  const isPasswordValid = await bcrypt.compare(password, user.password)
+
+  if (!isPasswordValid) {
+    return { success: false, message: 'Invalid credentials.' }
+  }
+
+  return { success: true, message: 'Login successful.' }
 }
