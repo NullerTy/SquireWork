@@ -5,11 +5,11 @@ import { useState } from 'react'
 import Link from 'next/link'
 
 export default function SignUpPage() {
-  const [feedback, setFeedback] = useState<string | null>(null) // State to store feedback messages
+  const [feedback, setFeedback] = useState<string | null>(null)
 
   const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setFeedback(null) // Reset feedback
+    setFeedback(null)
 
     const formData = new FormData(e.currentTarget)
 
@@ -17,7 +17,6 @@ export default function SignUpPage() {
       const response = await registerUser(formData)
 
       if (response.success) {
-        // Optionally, redirect to login or show success message
         setFeedback('Sign-up successful! Please log in.')
       } else {
         setFeedback(response.message)
@@ -64,7 +63,6 @@ export default function SignUpPage() {
         </button>
       </form>
 
-      {/* Feedback Message */}
       {feedback && <p className='mt-2 text-red-500'>{feedback}</p>}
 
       <p className='text-sm text-gray-600'>

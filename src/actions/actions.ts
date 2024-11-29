@@ -3,7 +3,6 @@
 import prisma from '@/lib/db'
 import bcrypt from 'bcrypt'
 
-// Register User
 export async function registerUser(
   formData: FormData
 ): Promise<{ success: boolean; message: string }> {
@@ -15,12 +14,10 @@ export async function registerUser(
     return { success: false, message: 'All fields are required.' }
   }
 
-  // Check if passwords match
   if (password !== confirmPassword) {
     return { success: false, message: 'Passwords do not match.' }
   }
 
-  // Check if the email is already in use
   const existingUser = await prisma.user.findUnique({
     where: { email },
   })
@@ -29,10 +26,8 @@ export async function registerUser(
     return { success: false, message: 'Email is already registered.' }
   }
 
-  // Hash the password
   const hashedPassword = await bcrypt.hash(password, 10)
 
-  // Create the user in the database
   await prisma.user.create({
     data: {
       email,
@@ -43,7 +38,6 @@ export async function registerUser(
   return { success: true, message: 'User registered successfully.' }
 }
 
-// Login User
 export async function loginUser(
   formData: FormData
 ): Promise<{ success: boolean; message: string }> {

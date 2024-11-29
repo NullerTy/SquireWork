@@ -6,12 +6,12 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
 export default function LoginPage() {
-  const [feedback, setFeedback] = useState<string | null>(null) // State to store feedback messages
+  const [feedback, setFeedback] = useState<string | null>(null)
   const router = useRouter()
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setFeedback(null) // Reset feedback
+    setFeedback(null)
 
     const formData = new FormData(e.currentTarget)
 
@@ -19,10 +19,8 @@ export default function LoginPage() {
       const response = await loginUser(formData)
 
       if (response.success) {
-        // Redirect to the admin page on success
         router.push('/admin')
       } else {
-        // Set feedback message for errors
         setFeedback(response.message)
       }
     } catch (error) {
@@ -60,7 +58,6 @@ export default function LoginPage() {
         </button>
       </form>
 
-      {/* Feedback Message */}
       {feedback && <p className='mt-2 text-red-500'>{feedback}</p>}
 
       <p className='text-sm text-gray-600'>
