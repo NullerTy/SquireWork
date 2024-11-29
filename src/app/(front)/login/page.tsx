@@ -18,8 +18,11 @@ export default function LoginPage() {
     try {
       const response = await loginUser(formData)
 
-      if (response.success) {
-        router.push('/admin')
+      if (response.success && response.role === 'admin') {
+        // Pass `isAdmin` flag as a query parameter when redirecting
+        router.push('/admin?isAdmin=true')
+      } else if (response.success) {
+        setFeedback('You are not authorized to access the admin page.')
       } else {
         setFeedback(response.message)
       }
