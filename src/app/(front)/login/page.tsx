@@ -18,11 +18,10 @@ export default function LoginPage() {
     try {
       const response = await loginUser(formData)
 
-      if (response.success && response.role === 'admin') {
-        // Pass `isAdmin` flag as a query parameter when redirecting
-        router.push('/admin?isAdmin=true')
-      } else if (response.success) {
-        setFeedback('You are not authorized to access the admin page.')
+      if (response.success && response.token) {
+        // Store token in localStorage
+        localStorage.setItem('authToken', response.token)
+        router.push('/admin') // Redirect to admin page
       } else {
         setFeedback(response.message)
       }
@@ -64,7 +63,7 @@ export default function LoginPage() {
       {feedback && <p className='mt-2 text-red-500'>{feedback}</p>}
 
       <p className='text-sm text-gray-600'>
-        Don’t have an account?{' '}
+        Dont have an account?{' '}
         <Link href='/signup' className='text-blue-500 hover:underline'>
           Sign Up
         </Link>

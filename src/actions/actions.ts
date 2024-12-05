@@ -2,6 +2,10 @@
 
 import prisma from '@/lib/db'
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+
+const JWT_SECRET = 'your_jwt_secret_here' // Replace with a strong secret key
+const TOKEN_EXPIRATION = '1h' // Token expiration time
 
 // Register User
 export async function registerUser(
@@ -44,7 +48,7 @@ export async function registerUser(
 // Login User
 export async function loginUser(
   formData: FormData
-): Promise<{ success: boolean; message: string; role?: string }> {
+): Promise<{ success: boolean; message: string; token?: string }> {
   const email = formData.get('email')?.toString()
   const password = formData.get('password')?.toString()
 
@@ -66,24 +70,33 @@ export async function loginUser(
     return { success: false, message: 'Invalid credentials.' }
   }
 
-  return { success: true, message: 'Login successful.', role: user.role }
+  // Generate JWT token
+  const token = jwt.sign({ email: user.email, role: user.role }, JWT_SECRET, {
+    expiresIn: TOKEN_EXPIRATION,
+  })
+
+  return { success: true, message: 'Login successful.', token }
+}
+
+// Logout User
+export async function logoutUser(): Promise<{
+  success: boolean
+  message: string
+}> {
+  return { success: true, message: 'Logout successful.' }
 }
 
 // Verify Admin Access
 export async function verifyAdminAccess(
-  email: string
+  token: string
 ): Promise<{ success: boolean; message: string }> {
-  const user = await prisma.user.findUnique({
-    where: { email },
-  })
-
-  if (!user) {
-    return { success: false, message: 'User not found.' }
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET) as { role: string }
+    if (decoded.role !== 'admin') {
+      return { success: false, message: 'Access denied. Admins only.' }
+    }
+    return { success: true, message: 'Access granted.' }
+  } catch (error) {
+    return { success: false, message: 'Invalid token.' }
   }
-
-  if (user.role !== 'admin') {
-    return { success: false, message: 'Access denied. Admins only.' }
-  }
-
-  return { success: true, message: 'Access granted.' }
 }

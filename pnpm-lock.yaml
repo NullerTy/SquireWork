@@ -55,6 +55,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      cookie:
+        specifier: ^1.0.2
+        version: 1.0.2
       framer-motion:
         specifier: ^11.11.13
         version: 11.11.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -146,6 +149,9 @@ importers:
       prisma:
         specifier: ^6.0.0
         version: 6.0.0
+      react-refresh:
+        specifier: ^0.14.2
+        version: 0.14.2
       tailwindcss:
         specifier: ^3.4.1
         version: 3.4.14
@@ -1913,6 +1919,13 @@ packages:
         integrity: sha512-6DnInpx7SJ2AK3+CTUE/ZM0vWTUboZCegxhC2xiIydHR9jNuTAASBrfEpHhiGOZw/nX51bHt6YQl8jsGo4y/0w==,
       }
     engines: { node: '>= 0.6' }
+
+  cookie@1.0.2:
+    resolution:
+      {
+        integrity: sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==,
+      }
+    engines: { node: '>=18' }
 
   cross-spawn@7.0.5:
     resolution:
@@ -4263,6 +4276,13 @@ packages:
         integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==,
       }
 
+  react-refresh@0.14.2:
+    resolution:
+      {
+        integrity: sha512-jCvmsr+1IUSMUyzOkRcvnVbX3ZYC6g9TDrDbFuFmRDq7PD4yaGbLKNQL6k2jnArV8hjYxh7hVhAZB6s9HDGpZA==,
+      }
+    engines: { node: '>=0.10.0' }
+
   react-remove-scroll-bar@2.3.6:
     resolution:
       {
@@ -6294,6 +6314,8 @@ snapshots:
 
   cookie@0.7.1: {}
 
+  cookie@1.0.2: {}
+
   cross-spawn@7.0.5:
     dependencies:
       path-key: 3.1.1
@@ -8059,6 +8081,8 @@ snapshots:
       scheduler: 0.23.2
 
   react-is@16.13.1: {}
+
+  react-refresh@0.14.2: {}
 
   react-remove-scroll-bar@2.3.6(@types/react@18.3.12)(react@18.3.1):
     dependencies:
