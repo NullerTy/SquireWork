@@ -13,7 +13,7 @@ const ParticleCanvas: React.FC = () => {
       return
     }
 
-    // Shader source
+    
     const vertexShaderSource = `
       attribute vec4 a_position;
       void main() {
@@ -46,7 +46,7 @@ const ParticleCanvas: React.FC = () => {
       }
     `
 
-    // Create shaders
+    
     const createShader = (type: number, source: string) => {
       const shader = gl.createShader(type)
       if (!shader) throw new Error('Failed to create shader')
@@ -67,7 +67,7 @@ const ParticleCanvas: React.FC = () => {
       fragmentShaderSource
     )
 
-    // Create program
+    
     const program = gl.createProgram()
     if (!program) throw new Error('Failed to create program')
 
@@ -83,7 +83,7 @@ const ParticleCanvas: React.FC = () => {
 
     gl.useProgram(program)
 
-    // Set up geometry
+    
     const positionBuffer = gl.createBuffer()
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer)
     gl.bufferData(
@@ -96,11 +96,11 @@ const ParticleCanvas: React.FC = () => {
     gl.enableVertexAttribArray(positionLocation)
     gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0)
 
-    // Uniform locations
+    
     const resolutionLocation = gl.getUniformLocation(program, 'resolution')
     const timeLocation = gl.getUniformLocation(program, 'time')
 
-    // Render loop
+    
     const startTime = performance.now()
     const render = () => {
       const now = performance.now()
@@ -110,17 +110,17 @@ const ParticleCanvas: React.FC = () => {
       gl.clearColor(0, 0, 0, 0)
       gl.clear(gl.COLOR_BUFFER_BIT)
 
-      // Set uniforms
+      
       gl.uniform2f(resolutionLocation, canvas.width, canvas.height)
       gl.uniform1f(timeLocation, time)
 
-      // Draw
+      
       gl.drawArrays(gl.TRIANGLES, 0, 6)
 
       requestAnimationFrame(render)
     }
 
-    // Resize canvas to fit its container
+    
     const resizeCanvas = () => {
       const parent = canvas.parentElement
       if (!parent) return
